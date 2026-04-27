@@ -56,8 +56,7 @@ A "Glassmorphism" inspired dashboard designed for the modern investor:
 
 ### Installation
 ```bash
-git clone https://github.com/your-username/Stock-Analysis-Prediction.git
-cd Stock-Analysis-Prediction
+git clone https://github.com/priyanshu2003719/Stock-Analysis-Prediction
 pip install -r requirements.txt
 streamlit run Trading_App.py
 ```
