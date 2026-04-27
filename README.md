@@ -1,232 +1,83 @@
-# 📊 Stock Analysis & Prediction Suite
+# 📈 StockIQ: Predictive Financial Intelligence 
 
-> 🚀 A complete **Financial Data Science Platform** combining **CAPM, Technical Analysis, and Time-Series Forecasting** in an interactive **Streamlit Web App**.
+![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
+![Machine Learning](https://img.shields.io/badge/ML-ARIMA%20%26%20CAPM-green?style=for-the-badge)
+![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
 
----
+**StockIQ** is a professional-grade financial analytics ecosystem that bridges the gap between raw market data and actionable investment theory. Built with Python and Streamlit, it combines **Machine Learning (ARIMA)** for price forecasting with **Modern Portfolio Theory (CAPM)** to quantify risk and expected returns.
 
-## ✨ Overview
 
-This project is a **multi-module stock intelligence system** that helps investors:
-
-* 📈 Analyze stock performance
-* ⚖️ Measure risk using **CAPM (Beta & Expected Return)**
-* 🔍 Apply **technical indicators (RSI, MACD, SMA)**
-* 🤖 Forecast future prices using **ARIMA models**
 
 ---
 
-## 🧠 Core Technologies
+## 🚀 System Architecture
 
-* 🐍 Python
-* 📊 **Streamlit** – Interactive UI
-* 📉 **Plotly** – Advanced visualizations
-* 💹 **yfinance** – Market data
-* 🧮 **NumPy / Pandas** – Data processing
-* 🤖 **Statsmodels (ARIMA)** – Forecasting
-* 📚 **ta (Technical Analysis Library)**
+The project is architected into three specialized domains:
+
+### 1. The Analytical Engine (`capm_functions.py` & `model_train.py`)
+The "brain" of the application, handling complex mathematical transformations:
+* **ARIMA Forecasting**: Implements $(30, d, 30)$ time-series modeling with dynamic differencing to handle non-stationary financial data.
+* **CAPM Regression**: Uses Linear Regression to derive **Beta ($\beta$)**, quantifying a stock's systematic risk relative to the S&P 500.
+* **Stationarity Logic**: Automated **Augmented Dickey-Fuller (ADF)** testing to ensure high-signal model training.
+
+
+
+### 2. The Visualization Powerhouse (`plotly_figure.py`)
+Utilizes `plotly.graph_objects` for high-performance, interactive rendering:
+* **Technical Indicators**: Real-time calculation of **RSI**, **MACD**, and **Moving Averages**.
+* **Comparative Analysis**: Normalizes assets to a common $t=0$ baseline to compare percentage growth across different price scales.
+
+### 3. The User Interface (`Stock_Analysis.py` & `Stock_Prediction.py`)
+A "Glassmorphism" inspired dashboard designed for the modern investor:
+* **360° Insight**: Combines qualitative business summaries with quantitative KPI grids (Market Cap, P/E Ratio, Debt-to-Equity).
+* **Confidence Metrics**: Displays **RMSE (Root Mean Square Error)** for all predictions to ensure transparency in model accuracy.
 
 ---
 
-## 🏗️ Project Architecture
+## 💼 Business & Investment Utility
 
+| Feature | Technical Implementation | Investor Value |
+| :--- | :--- | :--- |
+| **Risk Profiling** | Beta ($\beta$) Calculation | Identify if a stock is Aggressive ($\beta > 1$) or Defensive ($\beta < 1$). |
+| **Price Forecasting** | 30-Day ARIMA Outlook | Visualize the "most likely" path to set profit targets or stop-loss limits. |
+| **Momentum Tracking** | RSI & MACD Overlays | Detect overbought/oversold conditions to time market entries. |
+| **Portfolio Benchmarking** | S&P 500 Synchronization | Determine if specific picks provide fair return for the risk taken. |
+
+---
+
+## 🛠️ Tech Stack & Requirements
+
+* **Language:** Python 3.9+
+* **Data Sourcing:** `yfinance`, `pandas_datareader` (FRED Database)
+* **Analysis:** `NumPy`, `Pandas`, `SciPy`, `Statsmodels`
+* **Machine Learning:** `Scikit-Learn` (StandardScaler), ARIMA
+* **Visualization:** `Plotly`, `Streamlit`
+
+### Installation
 ```bash
-Stock-Analysis-Prediction/
-│
-├── 📊 Trading_App.py          # Landing Dashboard
-├── 📈 CAPM_Return.py         # CAPM Web App (Frontend)
-├── 🧮 capm_functions.py      # CAPM Engine (Backend)
-├── 📉 plotly_figure.py       # Visualization Engine
-├── 🏢 Stock_Analysis.py      # Full Stock Dashboard
-├── 🤖 model_train.py         # ML Model (ARIMA)
-└── 🔮 Stock_Prediction.py    # Prediction Interface
+git clone https://github.com/your-username/Stock-Analysis-Prediction.git
+cd Stock-Analysis-Prediction
+pip install -r requirements.txt
+streamlit run Trading_App.py
 ```
 
 ---
 
-# 📌 Modules Breakdown
+## 📊 Technical Pipeline Summary
+
+1.  **Data Ingestion**: Real-time fetching of OHLC (Open, High, Low, Close) data.
+2.  **Preprocessing**: 7-day rolling mean smoothing and ADF stationarity checks.
+3.  **Modeling**: Training ARIMA for trends and Linear Regression for market correlation.
+4.  **Validation**: Backtesting against the last 30 days of data to calculate **RMSE**.
+5.  **Output**: Interactive Plotly dashboards with a clear visual split between historical "Truth" (Black) and "Forecast" (Red).
+
+
 
 ---
 
-## 📈 CAPM Web Application
-
-### 🔹 What it Does
-
-* Calculates **Expected Return using CAPM**
-* Computes **Beta (β)** via regression
-* Compares stocks with **S&P 500 benchmark**
-
-### 📊 CAPM Formula
-
-```math
-E(R_i) = R_f + \beta_i (E(R_m) - R_f)
-```
-
-### 🚀 Features
-
-* 📌 Sector-based stock selection
-* ⏳ Custom time horizon
-* 🔄 Real-time data (yfinance + FRED)
-* 📊 Interactive Plotly charts
-
----
-
-## 🧮 CAPM Analytical Engine (`capm_functions.py`)
-
-### ⚙️ Key Functions
-
-* `normalize()` → Compare % growth
-* `daily_return()` → Compute returns
-* `calculate_beta()` → Linear regression
-
-### 📌 Insights
-
-* 🔺 β > 1 → Aggressive stock
-* 🔻 β < 1 → Defensive stock
-
----
-
-## 🏢 Trading App (`Trading_App.py`)
-
-### 🎯 Purpose
-
-Acts as the **central hub** for all tools.
-
-### 🧩 Features
-
-* Clean UI with **Streamlit**
-* Navigation to:
-
-  * Stock Info
-  * CAPM Analysis
-  * Prediction Engine
-  * Beta Calculator
-
----
-
-## 📊 Visualization Engine (`plotly_figure.py`)
-
-### 📈 Indicators Included
-
-* 📉 RSI (Overbought/Oversold)
-* 🔀 MACD (Trend Signals)
-* 📊 Moving Averages
-* 🕯️ Candlestick Charts
-
-### 🚀 Highlights
-
-* Interactive zoom & sliders
-* Forecast vs Historical separation
-* Professional-grade tables
-
----
-
-## 📊 Stock Analysis Dashboard (`Stock_Analysis.py`)
-
-### 🔍 Capabilities
-
-* Company fundamentals
-* Financial ratios (P/E, ROE, etc.)
-* Market metrics (Beta, Market Cap)
-* Technical indicators
-
-### 💼 Use Cases
-
-* 📊 Fundamental Analysis
-* ⚖️ Risk Profiling
-* 📉 Trend Evaluation
-
----
-
-## 🤖 ML Engine (`model_train.py`)
-
-### ⚙️ Model Used
-
-* **ARIMA (30, d, 30)**
-
-### 🔄 Pipeline
-
-1. Stationarity check (ADF Test)
-2. Differencing
-3. Model training
-4. Forecast generation
-5. RMSE evaluation
-
-### 📊 RMSE Formula
-
-```math
-RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}
-```
-
----
-
-## 🔮 Stock Prediction App (`Stock_Prediction.py`)
-
-### 🚀 Features
-
-* 📌 Custom ticker input
-* 📉 30-day forecast
-* 📊 RMSE accuracy score
-* 📈 Interactive forecast chart
-
-### 🎨 Visualization Logic
-
-* ⚫ Black → Historical data
-* 🔴 Red → Predicted trend
-
----
-
-# 📊 Key Capabilities
-
-✔️ **Risk Analysis** → CAPM Beta
-✔️ **Return Estimation** → Expected Return
-✔️ **Technical Analysis** → RSI, MACD
-✔️ **Forecasting** → ARIMA Predictions
-✔️ **Visualization** → Interactive dashboards
-
----
-
-# 💼 Business Value
-
-* 📉 Reduce investment uncertainty
-* ⚖️ Compare risk vs reward
-* 📊 Make data-driven decisions
-* 🤖 Remove emotional bias
-
----
-
-# 🧪 Data Science Highlights
-
-### ✔️ Predictive Modeling
-
-* ARIMA for time-series forecasting
-* Linear regression for Beta
-
-### ✔️ Data Preprocessing
-
-* Stationarity (ADF Test)
-* Rolling averages
-* Feature scaling
-
-### ✔️ Model Evaluation
-
-* RMSE for accuracy
-* Visual validation with charts
-
----
-
-# 🎯 Final Outcome
-
-This project delivers a **full-stack financial analytics system** that:
-
-* Combines **Machine Learning + Finance**
-* Transforms raw data into **actionable insights**
-* Provides a **professional-grade trading dashboard**
-
----
-
-# ⭐ Future Improvements
-
-* 📡 Live trading integration
-* 🧠 Deep learning models (LSTM)
-* 🌍 Multi-market support
-* 📊 Portfolio optimization
+## 📈 Learning Outcomes
+This project demonstrates a comprehensive mastery of the **Data-to-Insight** pipeline, specifically focusing on:
+* Handling the "Random Walk" nature of financial time-series.
+* Implementing professional-grade UI/UX for data-heavy applications.
+* Quantifying model uncertainty to build user trust.
