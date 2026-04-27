@@ -344,7 +344,7 @@ Based on the provided codebase, here is the explanation of how your project addr
 
 ---
 
-### ** Predictive Modeling & Algorithms**
+### **Predictive Modeling & Algorithms**
 **Code Implementation:**
 Your project utilizes two distinct mathematical approaches to forecast and analyze trends:
 * **Time-Series Modeling (`model_train.py`)**: It implements an **ARIMA (AutoRegressive Integrated Moving Average)** model. The engine uses a $(30, d, 30)$ configuration where $d$ is dynamically calculated to ensure data stationarity.
@@ -354,7 +354,7 @@ Your project utilizes two distinct mathematical approaches to forecast and analy
 
 ---
 
-### ** Data Cleaning and Preprocessing**
+### **Data Cleaning and Preprocessing**
 **Code Implementation:**
 Financial data is inherently "noisy." Your code manages this through several preprocessing layers:
 * **Stationarity Logic**: In `model_train.py`, the `get_differencing_order` function uses the **Augmented Dickey-Fuller (ADF)** test. If the $p-value > 0.05$, the code iteratively applies differencing until the data is stationary.
@@ -378,7 +378,7 @@ The project doesn't just predict; it validates its own accuracy:
 
 ---
 
-### ** Learning Outcomes & Business Expected Outcome**
+### **Learning Outcomes & Business Expected Outcome**
 **Code Implementation:**
 The integration of these scripts demonstrates a deep understanding of the "Data-to-Insight" pipeline:
 * **Predictive Modeling**: You have learned to handle the complexity of ARIMA parameters and stationarity requirements.
