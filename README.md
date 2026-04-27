@@ -3,7 +3,7 @@
 ![Python](https://img.shields.io/badge/Python-3.9+-blue?style=for-the-badge&logo=python)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
 ![Machine Learning](https://img.shields.io/badge/ML-ARIMA%20%26%20CAPM-green?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
+
 
 **StockIQ** is a professional-grade financial analytics ecosystem that bridges the gap between raw market data and actionable investment theory. Built with Python and Streamlit, it combines **Machine Learning (ARIMA)** for price forecasting with **Modern Portfolio Theory (CAPM)** to quantify risk and expected returns.
 
