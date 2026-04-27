@@ -140,3 +140,50 @@ The UI is architected into four logical sections to ensure a smooth user journey
 | **Hero** | Local Image Asset | Provide a modern, professional visual identity. |
 | **Services** | Header & Markdown | Summarize the four key analytical tools available. |
 | **Definitions** | Descriptive Text | Briefly explain how CAPM and Beta assist the user. |
+
+## iv) 📊 Financial Visualization Engine: `plotly_figure.py`
+
+This module is the **visualization powerhouse** of the application, utilizing `plotly.graph_objects` to create high-performance, interactive financial charts. It integrates the `ta` (Technical Analysis) library to calculate professional-grade indicators directly from raw price data.
+
+---
+
+### 📂 Code Structure & Logic
+
+The module is organized into a suite of specialized functions designed for financial data manipulation and rendering:
+
+* **Data Orchestration**: The `filter_data` function acts as a utility to slice DataFrames into specific time windows (e.g., 1 month, 1 year, Year-to-Date) using `dateutil` for precise relative time calculations.
+* **Technical Indicator Integration**: Functions like `RSI`, `Moving_average`, and `MACD` leverage the `ta` library to append technical signals to the dataset before rendering them.
+* **Forecast Mapping**: The `Moving_average_forecast` function distinguishes between historical and predicted data by plotting them as separate traces (Black for history, Red for future) on a unified timeline.
+* **Tabular UI**: Beyond charts, `plotly_table` provides a customized, CSS-styled table component with alternating row colors for high readability of raw financial figures.
+
+---
+
+### 🚀 Key Features
+
+* **Multi-Indicator Support**: Provides a comprehensive suite of technical tools including **Relative Strength Index (RSI)**, **Moving Average Convergence Divergence (MACD)**, and **Simple Moving Averages (SMA)**.
+* **Interactive Time-Scaling**: Integrated range sliders in the `close_chart` and `Moving_average` functions allow users to zoom into specific price actions without losing context of the overall trend.
+* **Advanced Chart Types**: Includes a `candlestick` function for traditional price action analysis, showing the Open, High, Low, and Close (OHLC) for every period.
+* **Dynamic Styling**: Uses consistent color palettes (e.g., `#e1efff` for paper backgrounds) to ensure the visual identity remains professional and easy on the eyes during long research sessions.
+
+---
+
+### 💼 Business & Investment Utility
+
+This module transforms abstract numbers into visual intelligence for traders:
+
+1.  **Momentum Analysis**: The **RSI** tool identifies overbought ($>70$) and oversold ($<30$) conditions, helping investors spot potential price reversals.
+2.  **Trend Confirmation**: By overlaying a **50-day SMA**, the module allows users to determine if a stock is in a long-term uptrend or downtrend relative to its daily noise.
+3.  **Signal Detection**: The **MACD** function visualizes the relationship between two moving averages, providing "Signal" and "Histogram" traces used by pros to identify entry and exit points.
+4.  **Forecasting Clarity**: The specialized forecast chart clearly separates "what happened" from "what is predicted," enabling a logical transition from historical review to future planning.
+
+---
+
+### 📊 Visualization Components
+
+| Function | Visualization Type | Key Components |
+| :--- | :--- | :--- |
+| `candlestick` | OHLC Candlesticks | Traditional green/red bars showing price range. |
+| `RSI` | Oscillator Chart | Includes a shaded area between 30 and 70 for volatility boundaries. |
+| `MACD` | Dual-Line Plot | Compares the MACD line against its Signal line to find crossovers. |
+| `plotly_table` | Data Grid | Professional-grade header and alternating row colors for financial reporting. |
+| `close_chart` | Multi-Line Plot | Simultaneous tracking of Open, Close, High, and Low prices. |
