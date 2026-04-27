@@ -94,3 +94,49 @@ The module leverages **Plotly** to move beyond static charts:
 * **Comparative Analysis**: The `interactive_plot` function allows users to toggle individual stocks on and off via a horizontal legend, facilitating side-by-side comparisons of specific assets.
 * **Dynamic Resizing**: The layout is set to `width=450` with tight margins, ensuring the charts fit perfectly within the Streamlit columns defined in the main application.
 * **Zero-Baseline Normalization**: By forcing the first entry of the daily return to `0`, the charts provide a clean starting point for all assets, making the visual data more intuitive for end-users.
+
+## iii ) 🏢 Landing Hub: `Trading_App.py`
+
+This script serves as the **central gateway** for the Trading Guide ecosystem. It is designed as a high-level landing page that introduces users to the suite of financial tools available, emphasizing professional aesthetics and clear service navigation.
+
+---
+
+### 📂 Code Structure & Logic
+
+The application follows a streamlined, top-down UI design using the **Streamlit** framework:
+
+* **Page Configuration**: It initializes the web environment with a "wide" layout and financial iconography (`📉`) to establish immediate professional context.
+* **HTML Integration**: The script uses `unsafe_allow_html=True` to inject custom CSS styles for headers, allowing for precise control over font weights and sizes that standard Markdown cannot achieve.
+* **Visual Assets**: A primary hero image (`app.avif`) is utilized to create a modern, engaging interface for first-time visitors.
+* **Service Routing Description**: The code outlines four distinct modules, providing the descriptive text that will guide users toward more technical tools like the CAPM calculators.
+
+---
+
+### 🚀 Key Features
+
+* **High-Impact Branding**: Features a large, bold title ("Trading Guide App 📊") and a professional sub-header to build user trust.
+* **Modular Service Index**: Clearly lists the platform's capabilities—Stock Information, CAPM Return, Stock Prediction, and CAPM Beta—in an organized, numbered format.
+* **Responsive Layout**: By setting `layout="wide"`, the application ensures that the landing page content is optimized for various screen resolutions, from laptops to large desktop monitors.
+
+---
+
+### 💼 Business & Investment Utility
+
+From a business perspective, this file acts as the **User Experience (UX) anchor**:
+
+1.  **Value Proposition**: It immediately informs the investor that this is a comprehensive platform for collecting critical data "prior to investing in stocks".
+2.  **Educational Pathing**: It simplifies complex financial concepts (like CAPM) by providing concise summaries of what each tool does before the user dives into the technical data.
+3.  **Informed Decision Making**: By highlighting "predicted closing prices" and "market performance," the app positions itself as a tool for reducing investment uncertainty.
+
+---
+
+### 📊 Visual Layout Summary
+
+The UI is architected into four logical sections to ensure a smooth user journey:
+
+| Section | Content Type | Purpose |
+| :--- | :--- | :--- |
+| **Header** | Styled HTML Text | Establish the app's identity and primary mission. |
+| **Hero** | Local Image Asset | Provide a modern, professional visual identity. |
+| **Services** | Header & Markdown | Summarize the four key analytical tools available. |
+| **Definitions** | Descriptive Text | Briefly explain how CAPM and Beta assist the user. |
