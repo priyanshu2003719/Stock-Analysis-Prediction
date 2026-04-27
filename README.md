@@ -187,3 +187,202 @@ This module transforms abstract numbers into visual intelligence for traders:
 | `MACD` | Dual-Line Plot | Compares the MACD line against its Signal line to find crossovers. |
 | `plotly_table` | Data Grid | Professional-grade header and alternating row colors for financial reporting. |
 | `close_chart` | Multi-Line Plot | Simultaneous tracking of Open, Close, High, and Low prices. |
+
+## v) 📊 Industrial-Grade Stock Intelligence: `Stock_Analysis.py`
+
+This module represents the most comprehensive analytical tool in the repository, designed to provide a 360-degree view of a company’s financial health and market performance. It serves as a professional-grade dashboard that combines qualitative business summaries with quantitative technical indicators.
+
+---
+
+### 📂 Code Structure & Logic
+
+The script is built with a clear hierarchy that guides the user from high-level discovery to deep-dive technical analysis:
+
+* **Dynamic Data Ingestion**: The application uses `yfinance` to fetch both real-time market quotes and static organizational data based on a user-provided ticker (e.g., "TSLA").
+* **Modular Utility Integration**: It imports specialized visualization functions from the `Pages.utils.plotly_figure` module, ensuring that complex charts like RSI and MACD are rendered consistently.
+* **Multi-Pane UI Layout**: Using Streamlit’s column system (`st.columns`), the code organizes data into logical clusters:
+    * **Overview Pane**: Business summaries and company profiles.
+    * **KPI Pane**: A grid of financial metrics (Price, Market Cap, Beta, P/E Ratio).
+    * **Historical Pane**: A 15-day tabular lookback of recent price action.
+* **State-Driven Visualization**: The `num_period` and `chart_type` variables capture user interactions (button clicks and dropdown selections) to dynamically update the rendering engine without refreshing the entire page.
+
+---
+
+### 🚀 Key Features
+
+* **Smart Metric Formatting**: Custom helper functions like `format_market_cap` and `format_percent` automatically scale large numbers (e.g., converting billions to "B" or trillions to "T") to maintain a clean, readable interface.
+* **Technical Indicator Toggle**: Users can switch between "Candle" and "Line" charts and overlay specific technical signals like **RSI**, **Moving Averages**, or **MACD** on the fly.
+* **Flexible Time Horizons**: Integrated time-range buttons (5D, 1M, 1Y, YTD, MAX) allow for instant switching between short-term day trading views and long-term investment perspectives.
+* **Live Price Delta**: The app calculates and displays the immediate daily change in both dollar value and percentage, providing instant market context.
+
+---
+
+### 💼 Business & Investment Utility
+
+This module is designed for the modern investor who requires more than just a price chart:
+
+1.  **Fundamental Analysis**: By displaying the "Business Summary" and "Key Financial Ratios" (Debt to Equity, Return on Equity), the app helps users evaluate the underlying strength of a company.
+2.  **Valuation Benchmarking**: Metrics like the **P/E Ratio** and **Forward P/E** allow investors to assess if a stock is overvalued or undervalued relative to its earnings.
+3.  **Risk Profiling**: The inclusion of **Beta** and **52-Week High/Low** ranges provides a clear picture of the asset's historical volatility and current price positioning.
+4.  **Operational Insights**: Detailed data such as sector, industry, and full-time employee count gives investors a qualitative understanding of the company's operational scale.
+
+---
+
+### 📊 Visualization Components
+
+
+The dashboard orchestrates several complex visual components to create a unified intelligence report:
+
+| Component | Purpose | Logic |
+| :--- | :--- | :--- |
+| **Financial KPI Grid** | Rapid Health Check | Displays 9 critical metrics including Market Cap and Beta. |
+| **Financial Tables** | Deep-Dive Data | Uses `plotly_table` to show Profit Margins and Debt ratios side-by-side. |
+| **Main Price Chart** | Trend Analysis | Supports interactive Candlestick and Line formats. |
+| **Indicator Sub-Charts** | Timing Entries/Exits | Dedicated areas for momentum (RSI) and trend strength (MACD). |
+
+## vi) 🤖 Predictive Intelligence Engine: `model_train.py`
+
+This module provides the **machine learning and statistical backend** for the "Stock Prediction" service mentioned in the main `Trading_App.py`. It focuses on time-series forecasting using the ARIMA (AutoRegressive Integrated Moving Average) model to predict future stock prices based on historical trends.
+
+---
+
+### 📂 Code Structure & Logic
+
+The script follows a rigorous data science pipeline to ensure the accuracy and stability of its forecasts:
+
+* **Data Acquisition**: The `get_data` function pulls historical closing prices from Yahoo Finance, specifically targeting data from the start of 2025.
+* **Stationarity Processing**: For a time-series model like ARIMA to work, the data must be "stationary" (statistical properties don't change over time). The module uses the **Augmented Dickey-Fuller (ADF) test** to check for this and applies a "differencing loop" to transform the data until it meets the required criteria.
+* **Model Architecture**: The system utilizes an `ARIMA(30, d, 30)` configuration. The "d" parameter is dynamically calculated by the differencing loop to ensure the model adapts to the specific volatility of the selected stock.
+* **Validation Framework**: The `evaluate_model` function performs a "Train-Test Split," training the model on historical data while reserving the last 30 days to calculate the **Root Mean Square Error (RMSE)**, providing a quantitative measure of the model's reliability.
+
+---
+
+### 🚀 Key Features
+
+* **Dynamic Differencing**: Automatically detects if a stock price is trending too aggressively and applies mathematical transformations to stabilize the data for better prediction.
+* **30-Day Forecasting**: Generates a future-dated DataFrame containing predicted closing prices for the next full month.
+* **Data Scaling**: Includes `StandardScaler` utilities to normalize price data, which helps in stabilizing the model's internal mathematical calculations.
+* **Rolling Mean Analysis**: Provides a 7-day rolling average function to smooth out daily "noise" and identify the underlying price momentum.
+
+---
+
+### 💼 Business & Investment Utility
+
+This module transforms historical "noise" into structured future insights:
+
+1.  **Trend Anticipation**: By forecasting 30 days out, it helps traders visualize potential price directions rather than just reacting to past events.
+2.  **Accuracy Transparency**: By calculating the RMSE, the app tells the user exactly how "wrong" the model was on recent data, allowing the investor to weigh the prediction's risk accordingly.
+3.  **Algorithmic Consistency**: Standardizes the forecasting process across different stocks, removing emotional bias from price predictions.
+
+
+---
+
+### 📊 Technical Pipeline Summary
+
+| Phase | Function | Outcome |
+| :--- | :--- | :--- |
+| **Check** | `stationary_check` | Determines if the data is stable enough for modeling. |
+| **Clean** | `get_differencing_order` | Removes trends to make the data stationary. |
+| **Train** | `fit_model` | Fits the ARIMA model to the processed price data. |
+| **Predict** | `get_forecast` | Produces a 30-day price outlook with a proper date index. |
+| **Validate** | `evaluate_model` | Scores the prediction's accuracy using RMSE. |
+
+## vii) 🔮 Predictive Insights Engine: `Stock_Prediction.py`
+
+This module serves as the **forecasting frontend** of the Trading App. It provides an intuitive interface for users to generate 30-day price predictions using sophisticated time-series modeling, making complex machine learning accessible to everyday investors.
+
+---
+
+### 📂 Code Structure & Logic
+
+The script acts as a coordinator between the raw data processing logic and the visual presentation layer:
+
+* **Integration Core**: It imports high-level functions from `model_train.py` (for the ARIMA logic) and `plotly_figure.py` (for the rendering logic), ensuring a clean separation between the "brains" and the "face" of the application.
+* **Sequential Pipeline**:
+    1.  **Data Fetching**: Retrieves historical data for the user-specified ticker.
+    2.  **Smoothing**: Applies a 7-day rolling mean to reduce daily market "noise" before the model sees the data.
+    3.  **Stationarity Logic**: Calculates the differencing order ($d$) needed to make the series predictable.
+    4.  **Transformation**: Scales the data using standard normalization to improve model convergence.
+    5.  **Evaluation**: Runs a backtest to generate an **RMSE (Root Mean Square Error)** score, telling the user how much the model's predictions deviated from actual history.
+    6.  **Forecasting & Reversal**: Generates 30 days of future data and "inverse scales" it back into actual dollar values for the user.
+
+---
+
+### 🚀 Key Features
+
+* **Custom Ticker Input**: Users can enter any valid stock symbol (e.g., AAPL, TSLA, BTC-USD) to generate instant localized forecasts.
+* **Real-time Accuracy Scoring**: The **RMSE Score** provides transparency, allowing the user to judge the reliability of the current prediction based on the stock's recent volatility.
+* **Rolling Average Base**: By training on the rolling mean rather than raw closing prices, the model focuses on the **underlying trend** rather than erratic daily spikes.
+* **Dual Data Preview**: Combines a high-precision interactive chart with a detailed forecast table for users who need exact numerical values for their spreadsheets.
+
+---
+
+### 📊 Visualization Excellence
+
+The module employs specialized visualization techniques to differentiate between "known" facts and "calculated" possibilities:
+
+* **Forecast Table**: A professional-grade Plotly table displaying the next 30 days of predicted prices, sorted chronologically and rounded for readability.
+* **Moving Average Forecast Chart**: This is the visual centerpiece. It uses color-coding to distinguish data:
+    * **Black Line**: Represents the historical 7-day rolling price (The Truth).
+    * **Red Line**: Represents the 30-day ARIMA prediction (The Forecast).
+    * This visual separation helps users immediately identify where the history ends and the prediction begins.
+
+
+
+---
+
+### 💼 Business & Investment Utility
+
+This tool provides significant strategic value for both casual and professional traders:
+
+1.  **Risk Management**: The RMSE score acts as a "confidence meter." A high RMSE warns the user that the stock is currently too volatile for reliable short-term prediction.
+2.  **Trend Anticipation**: Instead of looking purely at the past, investors can visualize a mathematically derived "most likely" path for the next month, helping them set realistic profit targets or stop-loss limits.
+3.  **Algorithmic Consistency**: By relying on the ARIMA model, the tool removes emotional bias (fear or greed) from the forecasting process, providing a cold, mathematical perspective on price action.
+4.  **Operational Planning**: For long-term investors, the 30-day outlook can assist in timing entries or exits to maximize capital efficiency.
+
+Based on the provided codebase, here is the explanation of how your project addresses each of the specific requirements for building a predictive financial system, followed by a conclusion for each.
+
+---
+
+### ** Predictive Modeling & Algorithms**
+**Code Implementation:**
+Your project utilizes two distinct mathematical approaches to forecast and analyze trends:
+* **Time-Series Modeling (`model_train.py`)**: It implements an **ARIMA (AutoRegressive Integrated Moving Average)** model. The engine uses a $(30, d, 30)$ configuration where $d$ is dynamically calculated to ensure data stationarity.
+* **Regression Analysis (`capm_functions.py`)**: It uses **Linear Regression** via `np.polyfit` to calculate the Beta ($\beta$) of a stock. This predicts how a stock will move relative to the market based on historical correlation.
+
+**Conclusion:** The system successfully combines **statistical forecasting** (ARIMA) for price direction with **probabilistic modeling** (CAPM) for risk-adjusted returns, providing a multi-layered predictive framework.
+
+---
+
+### ** Data Cleaning and Preprocessing**
+**Code Implementation:**
+Financial data is inherently "noisy." Your code manages this through several preprocessing layers:
+* **Stationarity Logic**: In `model_train.py`, the `get_differencing_order` function uses the **Augmented Dickey-Fuller (ADF)** test. If the $p-value > 0.05$, the code iteratively applies differencing until the data is stationary.
+* **Smoothing**: The `get_rolling_mean` function applies a 7-day window to eliminate daily outliers and reveal the underlying trend.
+* **Feature Scaling**: The `scaling` function uses `StandardScaler` to transform prices into a distribution with a mean of $0$ and a standard deviation of $1$, which is critical for the stability of the ARIMA algorithm.
+* **Date Synchronization**: In `CAPM_Return.py`, the code localizes timezones and performs an "inner join" between stock data and S&P 500 data to ensure perfectly aligned dates for regression.
+
+**Conclusion:** The robust preprocessing pipeline ensures that the models are trained on **high-signal, stationary data**, which significantly reduces the risk of "spurious regressions" or biased forecasts.
+
+---
+
+### **Model Evaluation and Visualization**
+**Code Implementation:**
+The project doesn't just predict; it validates its own accuracy:
+* **Accuracy Metrics**: The `evaluate_model` function in `model_train.py` performs a backtest using a **Train-Test Split**. It reserves the last 30 days of data and calculates the **Root Mean Square Error (RMSE)**:
+    $$RMSE = \sqrt{\frac{1}{n}\sum_{i=1}^{n}(y_i - \hat{y}_i)^2}$$
+* **Interactive Visuals**: `Stock_Prediction.py` uses Plotly to overlay the forecast. The `Moving_average_forecast` function creates a clear visual distinction between historical data (black) and the 30-day forecast (red).
+* **Technical Overlays**: `Stock_Analysis.py` provides secondary validation using indicators like **RSI** and **MACD** to confirm if the predicted trend aligns with market momentum.
+
+**Conclusion:** By exposing the **RMSE Score** to the user and providing interactive, color-coded charts, the application fosters **transparency and trust** in its data-driven predictions.
+
+---
+
+### ** Learning Outcomes & Business Expected Outcome**
+**Code Implementation:**
+The integration of these scripts demonstrates a deep understanding of the "Data-to-Insight" pipeline:
+* **Predictive Modeling**: You have learned to handle the complexity of ARIMA parameters and stationarity requirements.
+* **Trend Analysis**: Through the `normalize` and `rolling_mean` functions, you’ve mastered the ability to compare assets of different scales and filter out market volatility.
+* **Data-Driven Forecasting**: The transition from `Trading_App.py` (landing) to `Stock_Prediction.py` (outcome) shows a complete business application that translates raw CSV-style data into a strategic investment tool.
+
+**Conclusion:** The project achieves a professional standard in **Financial Data Science**, moving beyond simple charting to create a system that can quantify risk ($\beta$), measure error ($RMSE$), and project future value within a modern web interface.
