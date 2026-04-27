@@ -1,7 +1,7 @@
 # Stock-Analysis-Prediction
  Stock Analysis Forecasting &amp; its Time Series Analysis
 
-i)## 📈 Capital Asset Pricing Model (CAPM) Web Application
+## i) 📈 Capital Asset Pricing Model (CAPM) Web Application
 
 This repository contains a **Streamlit-based financial analytics tool** designed to calculate the expected return of individual stocks using the **Capital Asset Pricing Model (CAPM)**. By leveraging real-time market data, the application helps investors understand the relationship between systematic risk and expected return.
 
