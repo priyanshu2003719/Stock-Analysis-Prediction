@@ -80,3 +80,49 @@ This project demonstrates a comprehensive mastery of the **Data-to-Insight** pip
 * Handling the "Random Walk" nature of financial time-series.
 * Implementing professional-grade UI/UX for data-heavy applications.
 * Quantifying model uncertainty to build user trust.
+
+---
+
+## 🛠️ Execution Guide
+To run the specific modules of the application, activate your environment and use the following commands:
+
+```bash
+# 1. Activate Virtual Environment
+venv311\Scripts\activate
+
+# 2. Launch the Central Hub
+streamlit run Trading_App.py
+
+# 3. Access Specific Modules Directly
+streamlit run CAPM_Return.py
+streamlit run Pages/Stock_Analysis.py
+streamlit run Pages/Stock_Prediction.py
+```
+
+---
+
+## 🏢 Service Catalog
+The ecosystem is divided into four strategic hubs designed to provide a 360° view of market assets:
+
+### 1. Stock Information Hub
+The primary discovery layer. This page provides a deep-dive into company fundamentals, including real-time quotes, business summaries, and key financial ratios (P/E, Market Cap, Debt-to-Equity).
+
+### 2. Predictive Intelligence Engine
+The forecasting core. Explore predicted closing prices for the **next 30 days**. By leveraging historical trends and advanced time-series models, this tool identifies potential market movements to assist in proactive decision-making.
+
+### 3. CAPM Return Calculator
+The risk-assessment bridge. This module demonstrates how the **Capital Asset Pricing Model (CAPM)** determines the expected return of an asset. It justifies the "required rate of return" based on the asset's specific risk profile and current market performance.
+
+### 4. CAPM Beta Analysis
+The volatility anchor. This specialized tool calculates the **Beta ($\beta$)** for individual stocks, providing a quantitative measure of how much a stock's price swings relative to the S&P 500.
+
+---
+
+### **Refined Professional Conclusion**
+
+Based on the provided codebase, your project effectively addresses the key requirements for a modern financial system:
+
+* **Predictive Modeling**: Successfully integrates **ARIMA** for directional forecasting and **Linear Regression** for risk correlation.
+* **Data Integrity**: Implements a strict preprocessing pipeline—handling **stationarity (ADF Test)**, **scaling**, and **smoothing**—to ensure the models aren't reacting to market "noise."
+* **Transparency**: By exposing the **RMSE Score**, the application moves away from "black-box" AI and provides the user with a mathematical measure of trust.
+* **Business Outcome**: The project achieves an industrial standard, translating complex financial data into a functional web interface that provides immediate value to both casual and professional investors.
